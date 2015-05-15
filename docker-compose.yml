@@ -1,0 +1,22 @@
+procdev:
+  build: .
+  volumes:
+  - .:/var/www/
+  links:
+  - mysql:mysql
+  ports:
+  - "80"
+  environment:
+    VIRTUAL_HOST: comments.com
+mysql:
+  image: mysql
+  ports:
+  - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: asdf
+proxy:
+  image: jwilder/nginx-proxy
+  ports:
+  - "80:80"
+  volumes:
+  - /var/run/docker.sock:/tmp/docker.sock

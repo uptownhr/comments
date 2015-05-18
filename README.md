@@ -9,3 +9,6 @@ Comments anywhere
 # forking
 - Work is to be commited to your forks
 - Once work is done, you'll request a pull
+
+# pull from upstream
+- use GITHUB interface to merge

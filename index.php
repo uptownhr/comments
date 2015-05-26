@@ -1,10 +1,10 @@
 <?php
 session_start();
-$logged_in = 'not logged in';
+$logged_in = false;
 $email = false;
 
 if( !empty($_SESSION['user']) ){
-  $logged_in = 'logged in';
+  $logged_in = true;
   $email = $_SESSION['user']['email'];
 }
 ?>
@@ -12,11 +12,11 @@ if( !empty($_SESSION['user']) ){
   <body>
     <nav>
       <ul>
-        <li>Login</li>
+        <li><a href="/login.php">Login</a></li>
       </ul>
     </nav>
     <section>
-      <p>User is <?php echo $logged_in; ?></p>
+      <p>User is <?php echo $logged_in?'logged in':'not logged in'; ?></p>
       <p>Email is <?php echo $email; ?></p>
     </section>
   </body>

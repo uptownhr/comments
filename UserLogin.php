@@ -17,10 +17,18 @@ $mypw =  $_POST['password'];
 
 $sql = "SELECT id FROM User WHERE email = '$myemail' and password = '$mypw' ";
 $result = mysqli_query($connect, $sql);
-$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
 $count = mysqli_num_rows($result);
 
-if($count == 0){
+$sq = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw' ";
+$res = mysqli_query($connect, $sq);
+$row = mysqli_fetch_row($res);
+$user = $row[0];
+
+// once you have verified login credentials
+$_SESSION['user'] = $user;
+
+if($_SESSION['user'] ==  0){
 	echo "<form id='login' action='UserLogin.php' method='post' accept-charset='UTF-8'>";
  	echo "<fieldset>";
  	echo "<legend>Please Log In: </legend>";
@@ -53,7 +61,7 @@ if($count == 0){
 		 }
 	}
 
-else if($count == 1){
+else if($_SESSION['user'] > 0){
  	echo "<b>You are logged in </b>";
 	}
 ?>

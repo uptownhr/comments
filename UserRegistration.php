@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+$test = $_SESSION['user'];
+
+if($test > 0){
+	 header("Location: http://comments.com/index.php"); /* Redirect browser */
+ 	exit();
+}
+
+else{
 $host = "mysql";
 $un = "root";
 $pw = "asdf";
@@ -44,6 +54,7 @@ else if ($_POST['password'] == "" && $_POST['email'] != ""){
 	else if ($_POST['email'] == "" && $_POST['password'] == ""){
  	echo "Email and Password field are blank <br>";
 	}
+ }
 ?>
 
 <form id='login' action='UserRegistration.php' method='post' accept-charset='UTF-8'>

@@ -62,6 +62,7 @@ if($_SESSION['user'] ==  0){
 	}
 
 else if($_SESSION['user'] > 0){
- 	echo "<b>You are logged in </b>";
+ 	header("Location: http://comments.com/index.php"); /* Redirect browser */
+	exit();
 	}
 ?>

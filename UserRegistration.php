@@ -1,20 +1,16 @@
 <?php
+
+require('db.php');
 session_start();
 
-$test = $_SESSION['user'];
+$userlog = $_SESSION['user'];
 
-if($test > 0){
+if($userlog > 0){
 	 header("Location: http://comments.com/index.php"); /* Redirect browser */
  	exit();
 }
 
 else{
-$host = "mysql";
-$un = "root";
-$pw = "asdf";
-$db = "Comments";
-
-$connect = new mysqli($host,$un, $pw, $db);
 
 if ($connect->connect_error){
  	die("Connection failed: " . $connect->connect_error);
@@ -25,7 +21,6 @@ if(empty($_POST)){
 	}
 
 else if (!empty($_POST) && $_POST['email'] != "" && $_POST['password'] != ""){
- 	echo "<b>" . $_POST['email'] . "</b>";
 
  	$email = $_POST['email'];
  	$password = $_POST['password'];

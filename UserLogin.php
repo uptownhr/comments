@@ -1,24 +1,10 @@
 <?php
 session_start();
 
-$host = "mysql";
-$un = "root";
-$pw = "asdf";
-$db = "Comments";
-
-$connect = new mysqli($host,$un, $pw, $db);
-
-if ($connect->connect_error){
- 	die("Connection failed: " . $connect->connect_error);
-	}
+require('db.php');
 
 $myemail =  $_POST['email'];
 $mypw =  $_POST['password'];
-
-$sql = "SELECT id FROM User WHERE email = '$myemail' and password = '$mypw' ";
-$result = mysqli_query($connect, $sql);
-$rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
-$count = mysqli_num_rows($result);
 
 $sq = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw' ";
 $res = mysqli_query($connect, $sq);

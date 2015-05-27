@@ -13,6 +13,7 @@ if( !empty($_SESSION['user']) ){
     <nav>
       <ul>
         <li><a href="/login.php">Login</a></li>
+        <li><a href="/registration.php">Registration</a></li>
       </ul>
     </nav>
     <section>

@@ -1,24 +1,10 @@
 <?php
 session_start();
 
-$host = "mysql";
-$un = "root";
-$pw = "asdf";
-$db = "Comments";
-
-$connect = new mysqli($host,$un, $pw, $db);
-
-if ($connect->connect_error){
- 	die("Connection failed: " . $connect->connect_error);
-	}
+require('db.php');
 
 $myemail =  $_POST['email'];
 $mypw =  $_POST['password'];
-
-$sql = "SELECT id FROM User WHERE email = '$myemail' and password = '$mypw' ";
-$result = mysqli_query($connect, $sql);
-$rows = mysqli_fetch_array($result,MYSQLI_ASSOC);
-$count = mysqli_num_rows($result);
 
 $sq = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw' ";
 $res = mysqli_query($connect, $sq);
@@ -29,7 +15,7 @@ $user = $row[0];
 $_SESSION['user'] = $user;
 
 if($_SESSION['user'] ==  0){
-	echo "<form id='login' action='UserLogin.php' method='post' accept-charset='UTF-8'>";
+	echo "<form id='login' action='login.php' method='post' accept-charset='UTF-8'>";
  	echo "<fieldset>";
  	echo "<legend>Please Log In: </legend>";
  	echo "<input type='hidden' name='submitted' id='submitted' value='1'/>";
@@ -62,6 +48,7 @@ if($_SESSION['user'] ==  0){
 	}
 
 else if($_SESSION['user'] > 0){
- 	echo "<b>You are logged in </b>";
+ 	header("Location: http://comments.com/index.php"); /* Redirect browser */
+	exit();
 	}
 ?>

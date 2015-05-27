@@ -1,10 +1,16 @@
 <?php
-$host = "mysql";
-$un = "root";
-$pw = "asdf";
-$db = "Comments";
 
-$connect = new mysqli($host,$un, $pw, $db);
+require('db.php');
+session_start();
+
+$userlog = $_SESSION['user'];
+
+if($userlog > 0){
+	 header("Location: http://comments.com/index.php"); /* Redirect browser */
+ 	exit();
+}
+
+else{
 
 if ($connect->connect_error){
  	die("Connection failed: " . $connect->connect_error);
@@ -15,7 +21,6 @@ if(empty($_POST)){
 	}
 
 else if (!empty($_POST) && $_POST['email'] != "" && $_POST['password'] != ""){
- 	echo "<b>" . $_POST['email'] . "</b>";
 
  	$email = $_POST['email'];
  	$password = $_POST['password'];
@@ -44,6 +49,7 @@ else if ($_POST['password'] == "" && $_POST['email'] != ""){
 	else if ($_POST['email'] == "" && $_POST['password'] == ""){
  	echo "Email and Password field are blank <br>";
 	}
+ }
 ?>
 
 <form id='login' action='UserRegistration.php' method='post' accept-charset='UTF-8'>

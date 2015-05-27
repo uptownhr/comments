@@ -1,18 +1,9 @@
 <?php
-$host = "mysql";
-$username = "root";
-$pw = "asdf";
-$db = "Comments";
+require('db.php');
 
-$connect = new mysqli($host,$username, $pw, $db);
+$sql = "SELECT email FROM User";
+$result = $connect->query($sql);
 
-if ($connect->connect_error)
-{
- die("Connection failed: " . $connect->connect_error);
-}
-
-$test = "SELECT email FROM User";
-$result = $connect->query($test);
 
 if($result->num_rows > 0)
 {

@@ -15,7 +15,7 @@ $user = $row[0];
 $_SESSION['user'] = $user;
 
 if($_SESSION['user'] ==  0){
-	echo "<form id='login' action='UserLogin.php' method='post' accept-charset='UTF-8'>";
+	echo "<form id='login' action='login.php' method='post' accept-charset='UTF-8'>";
  	echo "<fieldset>";
  	echo "<legend>Please Log In: </legend>";
  	echo "<input type='hidden' name='submitted' id='submitted' value='1'/>";

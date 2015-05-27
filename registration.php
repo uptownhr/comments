@@ -52,7 +52,7 @@ else if ($_POST['password'] == "" && $_POST['email'] != ""){
  }
 ?>
 
-<form id='login' action='UserRegistration.php' method='post' accept-charset='UTF-8'>
+<form id='login' action='registration.php' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Creating New User</legend>
 <input type='hidden' name='submitted' id='submitted' value='1'/>

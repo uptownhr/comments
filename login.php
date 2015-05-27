@@ -10,9 +10,11 @@ $sq = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw'
 $res = mysqli_query($connect, $sq);
 $row = mysqli_fetch_row($res);
 $user = $row[0];
+$user_email = $row[1];
 
 // once you have verified login credentials
 $_SESSION['user'] = $user;
+$_SESSION['email'] = $user_email;
 
 if($_SESSION['user'] ==  0){
 	echo "<form id='login' action='login.php' method='post' accept-charset='UTF-8'>";

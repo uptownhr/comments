@@ -5,3 +5,10 @@ CREATE TABLE `User` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE Site(
+id int,
+domain varchar(128),
+created datetime default current_timestamp, 
+PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

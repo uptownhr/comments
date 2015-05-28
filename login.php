@@ -3,20 +3,26 @@ session_start();
 
 require('db.php');
 
-$myemail =  $_POST['email'];
-$mypw =  $_POST['password'];
+$userid = $_SESSION['user'];
 
-$sq = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw' ";
-$res = mysqli_query($connect, $sq);
-$row = mysqli_fetch_row($res);
-$user = $row[0];
-$user_email = $row[1];
+$myemail = $_POST['email'];
+$mypw = $_POST['password'];
 
-// once you have verified login credentials
-$_SESSION['user'] = $user;
-$_SESSION['email'] = $user_email;
+$sql = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw'";
+$result = mysqli_query($connect, $sql);
+$row = mysqli_fetch_row($result);
 
-if($_SESSION['user'] ==  0){
+$un = $row[0];
+$em = $row[1];
+
+if($un > 0){
+        $_SESSION['user'] = $un;
+        $_SESSION['email'] = $myemail;
+ 	header("Location: http://comments.com/index.php"); /* Redirect browser */
+        exit();
+}
+
+else if($userid == 0){
 	echo "<form id='login' action='login.php' method='post' accept-charset='UTF-8'>";
  	echo "<fieldset>";
  	echo "<legend>Please Log In: </legend>";
@@ -49,7 +55,7 @@ if($_SESSION['user'] ==  0){
 		 }
 	}
 
-else if($_SESSION['user'] > 0){
+else if($userid > 0){
  	header("Location: http://comments.com/index.php"); /* Redirect browser */
 	exit();
 	}

@@ -12,3 +12,14 @@ domain varchar(128),
 created datetime default current_timestamp, 
 PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Comments' (
+  'comment_id' int(11) unsigned NOT NILL,
+  'site_id' int(11) NOT NULL DEFAULT '',
+  'site_unique_id' int(11) NOT NULL DEFAULT '',
+  'user_id' int(11) NOT NULL DEFAULT '',
+  'message' text,
+  'created' datetime, 
+  PRIMARY KEY ('comment_id')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

@@ -17,7 +17,7 @@ $em = $row[1];
 
 if($un > 0){
         $_SESSION['user'] = $un;
-        $_SESSION['email'] = $em;
+        $_SESSION['email'] = $myemail;
  	header("Location: http://comments.com/index.php"); /* Redirect browser */
         exit();
 }

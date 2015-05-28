@@ -28,7 +28,7 @@ else if (!empty($_POST) && $_POST['email'] != "" && $_POST['password'] != ""){
  	$query = "INSERT INTO User (email, password) VALUES ('$email', '$password')";
  
  	if (mysqli_query($connect, $query)) {
-  		echo " has been created successfully";
+  		echo "<b>$email</b> has been created successfully";
  	} 
  
  	else {

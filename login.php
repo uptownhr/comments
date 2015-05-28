@@ -5,7 +5,24 @@ require('db.php');
 
 $userid = $_SESSION['user'];
 
-if($userid ==  0){
+$myemail = $_POST['email'];
+$mypw = $_POST['password'];
+
+$sql = "SELECT id,email FROM User WHERE email = '$myemail' and password = '$mypw'";
+$result = mysqli_query($connect, $sql);
+$row = mysqli_fetch_row($result);
+
+$un = $row[0];
+$em = $row[1];
+
+if($un > 0){
+        $_SESSION['user'] = $un;
+        $_SESSION['email'] = $em;
+ 	header("Location: http://comments.com/index.php"); /* Redirect browser */
+        exit();
+}
+
+else if($userid == 0){
 	echo "<form id='login' action='login.php' method='post' accept-charset='UTF-8'>";
  	echo "<fieldset>";
  	echo "<legend>Please Log In: </legend>";

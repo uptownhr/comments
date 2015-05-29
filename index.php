@@ -1,4 +1,5 @@
 <?php
+require('db.php');
 session_start();
 $logged_in = false;
 $email = false;
@@ -16,6 +17,7 @@ if($_SESSION['user'] > 0){
 	echo "<ul>";
         echo "<li><a href='/login.php'>Login</a></li>";
 	echo "<li><a href='/registration.php'>Registration</a></li>";
+	echo "<li><a href='/addsite.php'>Add Sites</a></li>";
 	echo "<li><a href='/logout.php'>Logout</a></li>";
 	echo "</ul>";
 	echo "</nav>";
@@ -25,6 +27,19 @@ if($_SESSION['user'] > 0){
 	echo "</section>";
 	echo " </body>";
 	echo "</html>";
+
+	$sql = "SELECT id, domain FROM Site";
+	$result = $connect->query($sql);
+
+	echo "<b>Here are your domain: </b><br>";
+
+	if($result->num_rows > 0){
+ 		while($row = $result->fetch_assoc()){
+			echo "" . $row["domain"] . "-" . $row["id"] . "<br>";
+ 		}
+	}
+	else
+	echo "Nothing in table";		
 }
 else{
  	echo "<html>";
@@ -39,5 +54,17 @@ else{
         echo "</html>";
 
    	echo "<b>Please login in.</b>";
+
+	$sql = "SELECT id, domain  FROM Site";
+        $result = $connect->query($sql);
+
+	echo "<b>Here are your domain: </b><br>";
+        if($result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                        echo "" . $row["domain"] . "-" . $row["id"] . "<br>";
+                }
+        }
+        else
+        echo "Nothing in table";
 }
 ?>

@@ -31,11 +31,18 @@ if($_SESSION['user'] > 0){
 	$sql = "SELECT id, domain FROM Site";
 	$result = $connect->query($sql);
 
+	echo "\n";
 	echo "<b>Here are your domain: </b><br>";
 
 	if($result->num_rows > 0){
  		while($row = $result->fetch_assoc()){
-			echo "" . $row["domain"] . "-" . $row["id"] . "<br>";
+			//echo "" . $row["domain"] . "-" . $row["id"] . "<br>";
+			$temp = $row["id"];
+			$_GET["id"] = $temp;
+                        $tempname = $row["domain"];
+                        //echo "hey--$temp<br>";
+                        //echo "<a href=" . $temp . ">$temp</a><br>";
+                        echo "<a href=site.php?site_id=" . $temp . ">$tempname</a><br>";
  		}
 	}
 	else
@@ -58,10 +65,17 @@ else{
 	$sql = "SELECT id, domain  FROM Site";
         $result = $connect->query($sql);
 
-	echo "<b>Here are your domain: </b><br>";
+	echo "\n";
+	echo "<br><b>Here are your domain: </b><br>";
         if($result->num_rows > 0){
                 while($row = $result->fetch_assoc()){
-                        echo "" . $row["domain"] . "-" . $row["id"] . "<br>";
+                        //echo "" . $row["domain"] . "-" . $row["id"] . "<br>";
+			$temp = $row["id"];
+			$_GET["id"] = $temp;
+			$tempname = $row["domain"];
+			//echo "hey--$temp<br>";
+			//echo "<a href=" . $temp . ">$temp</a><br>";
+			echo "<a href=site.php?site_id=" . $temp . ">$tempname</a><br>";
                 }
         }
         else
